@@ -1,34 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
+import { healthCheckAll } from './services/common';
+import { handleAPIError } from './shared/validation';
+import { useSession } from './hooks/useSession';
+import { getSession } from './services/sessions';
+import Loader from './components/Loader';
+import Router from './routes';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true);
+  const { hasActiveSession, updateSession, getSessionCode } = useSession();
+
+  useEffect(() => {
+    let loadingSessionToast: string | undefined;
+    const run = async () => {
+      try {
+        // Check if services are available
+        await healthCheckAll();
+        if (hasActiveSession) {
+          setLoading(false);
+          return;
+        }
+        // Check if there is a session available and restore it
+        const sessionCode = await getSessionCode();
+        if (!sessionCode) {
+          setLoading(false);
+          return;
+        }
+        loadingSessionToast = toast.loading('Restoring session...');
+        const session = await getSession({
+          sessionCode,
+        });
+        if (!session) {
+          setLoading(false);
+          toast.dismiss(loadingSessionToast);
+          toast.error('Session not found');
+          return;
+        }
+        await updateSession(session);
+        toast.dismiss(loadingSessionToast);
+        setLoading(false);
+      }
+      catch (error) {
+        toast.dismiss(loadingSessionToast);
+        handleAPIError(error);
+      }
+    };
+    run();
+    return () => {
+      toast.dismiss(loadingSessionToast);
+    }
+  }, [hasActiveSession]);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      {
+        loading ? (
+          <div className="loading">
+            <Loader />
+          </div>
+        ) : <Router showTopBar={hasActiveSession} />
+      }
+      <Toaster position="top-center" toastOptions={{
+        className: 'custom-toast'
+      }} />
+    </>
+  );
 }
 
-export default App
+export default App;
