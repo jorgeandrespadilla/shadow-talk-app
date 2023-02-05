@@ -1,3 +1,8 @@
+:root {
+  --toast-color: #333;
+  --toast-bg-color: #eee;
+}
+
 #root {
   width: 100%;
 }
@@ -10,13 +15,13 @@
 }
 
 .custom-toast {
-  background: #eee;
-  color: #333;
+  background-color: var(--toast-bg-color);
+  color: var(--toast-color);
 }
 
 @media (prefers-color-scheme: dark) {
-  .custom-toast {
-    background: #333;
-    color: #fff;
+  :root {
+    --toast-color: #eee;
+    --toast-bg-color: #333;
   }
 }
