@@ -1,4 +1,4 @@
-import api from "../shared/api"
+import api from "@/shared/api";
 import { CreatePostRequest, CreatePostResponse, GetPostsResponse } from "./types";
 
 export const getPosts = async () => {

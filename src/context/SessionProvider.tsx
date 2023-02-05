@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import localforage from "localforage";
-import { Session } from "../shared/types";
+import { Session } from "@/shared/types";
 
 interface SessionContextData {
   hasActiveSession: boolean;

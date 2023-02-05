@@ -1,4 +1,4 @@
-import { Post, PostDetail, Session } from "../shared/types";
+import { Post, PostDetail, Session } from "@/shared/types";
 
 export interface GetSessionRequest {
   sessionCode: string;

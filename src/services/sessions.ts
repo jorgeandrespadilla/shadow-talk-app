@@ -1,4 +1,4 @@
-import api from "../shared/api"
+import api from "@/shared/api";
 import { CreateSessionResponse, GetSessionRequest } from "./types";
 
 export const getSession = async (request: GetSessionRequest) => {
