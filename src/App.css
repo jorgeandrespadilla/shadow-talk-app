@@ -15,8 +15,8 @@
 }
 
 .custom-toast {
-  background-color: var(--toast-bg-color);
-  color: var(--toast-color);
+  background-color: var(--toast-bg-color) !important;
+  color: var(--toast-color) !important;
 }
 
 @media (prefers-color-scheme: dark) {
