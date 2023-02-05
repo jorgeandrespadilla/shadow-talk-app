@@ -1,0 +1,36 @@
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header .brand-logo {
+  width: 3rem;
+  height: 3rem;
+  transition: filter 0.2s;
+}
+
+.brand-logo {
+  width: 2rem;
+  height: 2rem;
+  transition: filter 0.2s;
+}
+
+.brand-logo:hover {
+  filter: 
+    brightness(1.2)
+    drop-shadow(0 0 0.5rem var(--highlight));
+}
+
+.header .brand-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}

@@ -1,0 +1,31 @@
+.user-info__container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-inline: 0.5rem;
+}
+
+.user-info__avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid var(--highlight);
+  transition: filter 0.2s;
+}
+
+.user-info__close {
+  color: var(--color-text);
+  background-color: transparent;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.user-info__close:hover {
+  color: var(--color-danger);
+  background-color: transparent;
+  border-color: transparent;
+}

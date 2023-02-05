@@ -1,0 +1,11 @@
+.post__content-wrapper {
+  width: 100%;
+  background-color: var(--content-bg-color);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.post__body {
+  margin-top: 1rem;
+}

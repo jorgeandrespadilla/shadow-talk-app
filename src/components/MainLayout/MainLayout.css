@@ -1,0 +1,19 @@
+.layout__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.layout__content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.layout__content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+}
