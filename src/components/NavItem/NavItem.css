@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: #fff;
+  color: var(--text-color);
   text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
@@ -17,7 +17,7 @@
 
 .nav-item.highlight {
   display: block;
-  color: #fff;
+  color: var(--text-color);
   background-color: var(--color-primary);
   padding: 0.15rem 0.5rem;
   transition: background-color 0.2s ease-in-out;
